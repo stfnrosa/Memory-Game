@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'hpFont';
+    src: url('../fonte/hpFont.TTF');
+  }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../imagens/castelo-noite.jpg");
+    background-size: cover;
+    user-select: none;
+}
+
+.container {
+    font-family: monospace;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.685);
+    border-radius: 10px;
+    padding: 40px 60px;
+    box-shadow: 20px 20px 40px rgba(133, 133, 133, 0.616);
+}
+
+h2 {
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+}
+
+.reset {
+    padding: 15px 20px;
+    width: 100%;
+    color: black;
+    background-color: white;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reset:focus {
+    color: yellow;
+    background-color: black;
+
+}
+.game {
+    width: 430px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  transform: rotateY(180deg);
+  transition: 0.25s;
+}
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../imagens/Card.png");
+  transition: 0.25s;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+}
+.item.flipped::after {
+    transform: rotateY(180deg);
+}
+
+.item.boxOpen {
+  transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after {
+  transform: rotateY(180deg);
+}
+
+#victory {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 150px;
+    color: #AE0203;
+    text-shadow: 15px 20px 0 black, 10px 10px 0 black, -10px -2px 0 white, 10px 10px 0 black;
+    z-index: 100; /* Certifique-se de que está acima das cartas */
+}
